@@ -1,7 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+from .models import Todo, Project
+from .serializers import TodoSerializer, ProjectSerializer
 
 
 # Create your views here.
-def main(request):
-    return HttpResponse("<h1>Hello</h1>")
+class TodoView(generics.ListAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class CreateTodoView(generics.CreateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class ProjectView(generics.ListAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer

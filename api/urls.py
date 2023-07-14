@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import main
+from .views import TodoView, ProjectView, CreateTodoView
 
 urlpatterns = [
-    path('hello/', main)
+    path('todo/', TodoView.as_view()),
+    path('todo/add', CreateTodoView.as_view()),
+    path("project/", ProjectView.as_view())
 ]
