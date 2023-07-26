@@ -1,8 +1,11 @@
-from django.urls import path
-from .views import TodoView, ProjectView, CreateTodoView
+from django.urls import path, include
+from .views import TodoView
+from rest_framework import routers
+from .views import TodoView
+
+router = routers.DefaultRouter()
+router.register(r'todos', TodoView, 'todo')
 
 urlpatterns = [
-    path('todo/', TodoView.as_view()),
-    path('todo/add', CreateTodoView.as_view()),
-    path("project/", ProjectView.as_view())
+    path("", include(router.urls)),
 ]
